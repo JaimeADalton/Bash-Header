@@ -9,7 +9,7 @@
 #bash_version    :4.1.5(1)-release
 #==============================================================================
 
-today=$(date +%Y%m%d)
+today=$(date +'%d/%m/%Y')
 div=======================================
 
 /usr/bin/clear
@@ -53,7 +53,7 @@ printf "%-16s\n\
 %-16s%-8s\n\
 %-16s%-8s\n\
 %-16s%-8s\n\
-%s\n\n\n" '#!/bin/bash -' '#title' ":$title" '#description' \
+%s\n\n\n" '#!/bin/bash' '#title' ":$title" '#description' \
 ":${dscrpt}" '#author' ":$name" '#date' ":$today" '#version' \
 ":$vnum" '#usage' ":./$title" '#notes' ':' '#bash_version' \
 ":${BASH_VERSION}" \#$div${div} > $title
@@ -66,7 +66,7 @@ chmod +x $title
 _select_editor(){
 
     # Select between Vim or Emacs.
-    printf "%s\n%s\n%s\n\n" "Select an editor." "1 for Vim." "2 for Emacs."
+    printf "%s\n%s\n%s\n%s\n\n" "Select an editor." "1 for Vim." "2 for Emacs." "3 for nano."
     read -r editor
 
     # Open the file with the cursor on the twelth line.
@@ -74,6 +74,8 @@ _select_editor(){
         1) vim +12 $title
             ;;
         2) emacs +12 $title &
+            ;;
+        3) nano +12 $title
             ;;
         *) /usr/bin/clear
            printf "%s\n%s\n\n" "I did not understand your selection." \
